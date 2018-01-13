@@ -1,0 +1,11 @@
+{
+  "name": "wyvern",
+  "description": "wyvern",
+  "author": "zxvnme",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "lol-stats-api-module": "^1.0.4"
+  }
+}
