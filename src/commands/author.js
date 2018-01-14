@@ -1,4 +1,4 @@
-module.exports.launch = (client, api, message, args) => {
+module.exports.launch = (client, api, config, message, args) => {
     message.channel.send({
         embed: {
             color: 0x8e44ad,

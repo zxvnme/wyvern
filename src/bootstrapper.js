@@ -27,7 +27,7 @@ client.on('message', message => {
 
     try {
         let commandFile = require('./commands/' + command + '.js');
-        commandFile.launch(client, api, message, args);
+        commandFile.launch(client, api, config, message, args);
     } catch (err) {
         console.error(err);
     }

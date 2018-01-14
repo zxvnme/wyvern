@@ -4,7 +4,7 @@ String.prototype.replaceAll = function (orig, repl) {
     return this.split(orig).join(repl);
 }
 
-module.exports.launch = (client, api, message, args) => {
+module.exports.launch = (client, api, config, message, args) => {
     if (!args[1]) return message.channel.send(stringUtils.wrapWithOBT("Too few arguments!"));
 
     switch (args[1]) {
@@ -28,7 +28,7 @@ module.exports.launch = (client, api, message, args) => {
                             author: {
                                 name: "🏆 Rank info:"
                             },
-                            description: "[" + data[0].playerOrTeamName + "](" + "http://" + "eune" + ".op.gg/summoner/userName=" + (data[0].playerOrTeamName.indexOf(" ") ? data[0].playerOrTeamName.replaceAll(" ", "+") + ")" : data[0].playerOrTeamName + ")"),
+                            description: "[" + data[0].playerOrTeamName + "](" + "http://" + config.region + ".op.gg/summoner/userName=" + (data[0].playerOrTeamName.indexOf(" ") ? data[0].playerOrTeamName.replaceAll(" ", "+") + ")" : data[0].playerOrTeamName + ")"),
                             fields: [
                                 {
                                     name: "Solo/Duo",

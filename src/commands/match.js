@@ -16,7 +16,7 @@ var redTeam = [
     summoner_ten = null,
 ];
 
-module.exports.launch = (client, api, message, args) => {
+module.exports.launch = (client, api, config, message, args) => {
     if (!args[1]) return message.channel.send(stringUtils.wrapWithOBT("Too few arguments!"));
     let match = { summonerId: args[1] }
 

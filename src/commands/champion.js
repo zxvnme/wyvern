@@ -1,6 +1,6 @@
 const stringUtils = require('./../stringutils');
 
-module.exports.launch = (client, api, message, args) => {
+module.exports.launch = (client, api, config, message, args) => {
     if (!args[1]) return message.channel.send(stringUtils.wrapWithOBT("Too few arguments!"));
 
     let champion = {
@@ -14,6 +14,9 @@ module.exports.launch = (client, api, message, args) => {
             embed: {
                 author: {
                     name: "Info about " + data.name + ","
+                },
+                thumbnail: {
+                    url: "http://ddragon.leagueoflegends.com/cdn/8.1.1/img/champion/" + data.name + ".png"
                 },
                 description: data.title,
                 fields: [
