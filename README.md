@@ -1,4 +1,4 @@
-# wyvern
+# wyvern [![Discord](https://img.shields.io/badge/discord-wyvern-738bd7.svg?style=square)](https://discord.gg/yUV5wWY)
 An useful League of Legends  helper.  
   
 If you want to contribute, please check out the code style  note.
