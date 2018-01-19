@@ -56,3 +56,11 @@ module.exports.launch = (client, api, config, message, args) => {
         });
     });
 };
+
+module.exports.getSyntax = () => {
+    return "match <summonerId>";
+};
+
+module.exports.getDescription = () => {
+    return "Info about currently playing match.";
+};

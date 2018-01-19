@@ -8,3 +8,11 @@ module.exports.launch = (client, api, config, message, args) => {
         });
     });
 };
+
+module.exports.getSyntax = () => {
+    return "ping";
+};
+
+module.exports.getDescription = () => {
+    return "Pong!";
+};

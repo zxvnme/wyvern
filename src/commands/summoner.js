@@ -5,7 +5,7 @@ String.prototype.replaceAll = function (orig, repl) {
 }
 
 module.exports.launch = (client, api, config, message, args) => {
-    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.prefix + "summoner <region> <summonerName>"));
+    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.prefix + "summoner <summonerName>"));
     args.shift();
     let summoner = { name: args.join(" ") };
 
@@ -45,4 +45,12 @@ module.exports.launch = (client, api, config, message, args) => {
             }
         });
     });
+};
+
+module.exports.getSyntax = () => {
+    return "summoner <summonerName>";
+};
+
+module.exports.getDescription = () => {
+    return "Info about summoner.";
 };

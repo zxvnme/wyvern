@@ -26,3 +26,11 @@ module.exports.launch = (client, api, config, message, args) => {
         }
     });
 };
+
+module.exports.getSyntax = () => {
+    return "author";
+};
+
+module.exports.getDescription = () => {
+    return "Short credits note.";
+};

@@ -31,11 +31,12 @@ client.on('ready', () => {
             break;
     }
     api.getVersionsStaticData({ region: config.region }, (err, data) => {
-        if(!err) console.log(success("Estabilished ") + "connection with Riot Api v-" + neutral(data[0]));
+        if (!err) console.log(success("Estabilished ") + "connection with Riot Api v-" + neutral(data[0]));
         else console.log(error("Couldn't ") + "connect to Riot Api. Error code: " + neutral(err.code));
     });
     fs.readdir('./commands/', (err, files) => {
         files.forEach((response) => {
+            if (err) return console.error(err);
             if (!response.endsWith(".js")) return;
             if (response) console.log(success("Loaded ") + response);
         });
@@ -49,6 +50,34 @@ client.on('message', message => {
 
     let args = message.content.substring(config.prefix.length).split(" ");
     let command = args[0].toLowerCase();
+
+    if (args[0] === "help") {
+        let help_content = [];
+        let description = "";
+        let files = fs.readdirSync('./commands/');
+        files.forEach((response) => {
+            try {
+                let commandFile = require('./commands/' + response);
+                help_content.push(commandFile.getSyntax() + " ~ " + commandFile.getDescription());
+            } catch (err) {
+                console.error(err);
+            }
+
+        });
+        help_content.sort((x, y) => {
+            return x.length - y.length;
+        });
+        for (let i = 0; i < files.length; i++) {
+            description = description + help_content[i] + "\n";
+        }
+        return message.channel.send({
+            embed: {
+                color: 0x2ecc71,
+                title: "List of commands.",
+                description: description
+            }
+        });
+    }
 
     try {
         let commandFile = require('./commands/' + command + '.js');

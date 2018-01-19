@@ -1,8 +1,9 @@
 const stringUtils = require('./../stringutils');
 
-module.exports.launch = (client, api, config, message, args) => {
-    if (!args[1]) return message.channel.send(stringUtils.wrapWithOBT("Too few arguments!"));
 
+
+module.exports.launch = (client, api, config, message, args) => {
+    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.prefix + "champion <championId>"));
     let champion = {
         id: parseInt(args[1]),
         dataById: true,
@@ -32,4 +33,12 @@ module.exports.launch = (client, api, config, message, args) => {
             }
         })
     });
+};
+
+module.exports.getSyntax = () => {
+    return "champion <championId>";
+};
+
+module.exports.getDescription = () => {
+    return "Info about specified champion.";
 };

@@ -37,3 +37,11 @@ module.exports.launch = (client, api, config, message, args) => {
         });
     });
 };
+
+module.exports.getSyntax = () => {
+    return "fullstatus <region>";
+};
+
+module.exports.getDescription = () => {
+    return "Server status with all incidents.";
+};

@@ -2,7 +2,7 @@
   "name": "wyvern",
   "description": "wyvern",
   "author": "zxvnme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "chalk": "^2.3.0",
