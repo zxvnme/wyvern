@@ -6,8 +6,8 @@
   "private": true,
   "dependencies": {
     "chalk": "^2.3.0",
-    "discord.js": "^11.2.1",
-    "lol-stats-api-module": "^1.0.4",
+    "discord.js": "^11.3.0",
+    "lol-stats-api-module": "^1.0.6",
     "request": "^2.83.0"
   }
 }

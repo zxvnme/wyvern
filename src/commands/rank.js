@@ -27,7 +27,7 @@ module.exports.launch = (client, api, config, message, args) => {
                 }
             });
 
-            if (!data[rank_indexes[0]]) message.channel.send({ embed: { color: 0x2c3e50, description: "Unranked" } });
+            if (!data[rank_indexes[0]]) message.channel.send({ embed: { color: 0x2c3e50, title: "Solo/Duo", description: "Unranked" } });
             else
             message.channel.send({
                 embed: {
@@ -55,7 +55,7 @@ module.exports.launch = (client, api, config, message, args) => {
                 }
             });
 
-            if (!data[rank_indexes[1]]) message.channel.send({ embed: { color: 0x2c3e50, description: "Unranked" } });
+            if (!data[rank_indexes[1]]) message.channel.send({ embed: { color: 0x2c3e50, title: "Flex 5v5", description: "Unranked" } });
             else
             message.channel.send({
                 embed: {
@@ -83,7 +83,7 @@ module.exports.launch = (client, api, config, message, args) => {
                 }
             });
 
-            if (!data[rank_indexes[2]]) message.channel.send({ embed: { color: 0x2c3e50, description: "Unranked" } });
+            if (!data[rank_indexes[2]]) message.channel.send({ embed: { color: 0x2c3e50, title: "Flex 3v3", description: "Unranked" } });
             else
             message.channel.send({
                 embed: {

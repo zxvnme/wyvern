@@ -10,9 +10,11 @@ module.exports.launch = (client, api, config, message, args) => {
     let summoner = { name: args.join(" ") };
 
     api.getSummoner(summoner, (err, data) => {
+        console.log(summoner);
         if (err) return message.channel.send(stringUtils.wrapWithCSH("markdown", "# An error has occurred :(\n" + err.code + " " + err.message));
         message.channel.send({
             embed: {
+                color: 0x2ecc71,
                 author: {
                     name: "📋 Summoner info."
                 },

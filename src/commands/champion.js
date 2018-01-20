@@ -1,7 +1,5 @@
 const stringUtils = require('./../stringutils');
 
-
-
 module.exports.launch = (client, api, config, message, args) => {
     if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.prefix + "champion <championId>"));
     let champion = {

@@ -1,7 +1,7 @@
 module.exports.launch = (client, api, config, message, args) => {
     message.channel.send({
         embed: {
-            color: 0x8e44ad,
+            color: 0x8e44ad,  
             author: {
                 icon_url: "https://avatars.githubusercontent.com/zxvnme",
                 name: "zxvnme"

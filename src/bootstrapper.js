@@ -24,13 +24,13 @@ client.on('ready', () => {
                     console.log(success("Sucessfully ") + "set game status to " + neutral(process_args[2]));
                     break;
                 case 'stream':
-                    client.user.setGame(process_args[2], "https://www.twitch.tv/wyvern_bot");
+                    client.user.setGame(process_args[2], "https://www.twitch.tv/wyvern_bot"); // Streaming status trick... This twitch channel doesnt exist.
                     console.log(success("Sucessfully ") + "set stream status to " + neutral(process_args[2]));
                     break;
             }
             break;
     }
-    api.getVersionsStaticData({ region: config.region }, (err, data) => {
+    api.getVersionsStaticData({ region: "eune" }, (err, data) => { 
         if (!err) console.log(success("Estabilished ") + "connection with Riot Api v-" + neutral(data[0]));
         else console.log(error("Couldn't ") + "connect to Riot Api. Error code: " + neutral(err.code));
     });
@@ -54,7 +54,7 @@ client.on('message', message => {
     if (args[0] === "help") {
         let help_content = [];
         let description = "";
-        let files = fs.readdirSync('./commands/');
+        let files = fs.readdirSync('./commands/'); // It have to be done with synchronous function for proper array push.
         files.forEach((response) => {
             try {
                 let commandFile = require('./commands/' + response);
@@ -64,8 +64,8 @@ client.on('message', message => {
             }
 
         });
-        help_content.sort((x, y) => {
-            return x.length - y.length;
+        help_content.sort((x, y) => { // Sort content by line length. 
+            return x.length - y.length;  
         });
         for (let i = 0; i < files.length; i++) {
             description = description + help_content[i] + "\n";
