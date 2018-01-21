@@ -1,3 +1,5 @@
+const stringUtils = require('./stringutils.js');
+const packagejson = require('./../package.json');
 const RiotApi = require('lol-stats-api-module');
 const config = require('./../config.json');
 const request = require('request');
@@ -10,12 +12,22 @@ const api = new RiotApi({
     region: config.region
 });
 
+function format(seconds) {
+    function pad(s) {
+        return (s < 10 ? '0' : '') + s;
+    }
+    var hours = Math.floor(seconds / (60 * 60));
+    var minutes = Math.floor(seconds % (60 * 60) / 60);
+    var seconds = Math.floor(seconds % 60);
 
+    return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+}
+
+let process_args = process.argv.slice(2);
 client.on('ready', () => {
     let success = chalk.green;
     let error = chalk.red;
     let neutral = chalk.gray;
-    let process_args = process.argv.slice(2);
     switch (process_args[0]) {
         case '--status':
             switch (process_args[1]) {
@@ -30,7 +42,7 @@ client.on('ready', () => {
             }
             break;
     }
-    api.getVersionsStaticData({ region: "eune" }, (err, data) => { 
+    api.getVersionsStaticData({ region: "eune" }, (err, data) => {
         if (!err) console.log(success("Estabilished ") + "connection with Riot Api v-" + neutral(data[0]));
         else console.log(error("Couldn't ") + "connect to Riot Api. Error code: " + neutral(err.code));
     });
@@ -65,18 +77,50 @@ client.on('message', message => {
 
         });
         help_content.sort((x, y) => { // Sort content by line length. 
-            return x.length - y.length;  
+            return x.length - y.length;
         });
         for (let i = 0; i < files.length; i++) {
             description = description + help_content[i] + "\n";
         }
-        return message.channel.send({
-            embed: {
-                color: 0x2ecc71,
-                title: "List of commands.",
-                description: description
-            }
-        });
+
+        if (args[1] === "dev")
+            return message.channel.send({
+                embed: {
+                    color: 0x2ecc71,
+                    title: "List of commands.",
+                    thumbnail: {
+                        url: "http://pichoster.net/images/2018/01/21/6171c6792a3fae80540e085ef53ca372.png"
+                    },
+                    description: description,
+                    fields: [
+                        {
+                            name: "Version: ",
+                            value: stringUtils.wrapWithOBT(packagejson.version),
+                        },
+                        {
+                            name: "CLI Args: ",
+                            value: stringUtils.wrapWithOBT(process_args.join(" ")),
+                            inline: true
+                        },
+                        {
+                            name: "Uptime: ",
+                            value: stringUtils.wrapWithOBT(format(process.uptime())),
+                            inline: true
+                        },
+                    ]
+                }
+            });
+        else
+            return message.channel.send({
+                embed: {
+                    color: 0x2ecc71,
+                    title: "List of commands.",
+                    thumbnail: {
+                        url: "http://pichoster.net/images/2018/01/21/6171c6792a3fae80540e085ef53ca372.png"
+                    },
+                    description: description
+                }
+            });
     }
 
     try {

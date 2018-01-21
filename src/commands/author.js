@@ -14,7 +14,7 @@ module.exports.launch = (client, api, config, message, args) => {
                 },
                 {
                     name: "Graphic designer:",
-                    value: "[vx1ne](https://github.com/vx1ne)",
+                    value: "[zxvnme](https://github.com/zxvnme)",
                     inline: true,
                 }
             ],
