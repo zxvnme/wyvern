@@ -70,7 +70,7 @@ client.on('message', message => {
         files.forEach((response) => {
             try {
                 let commandFile = require('./commands/' + response);
-                help_content.push(commandFile.getSyntax() + " ~ " + commandFile.getDescription());
+                help_content.push(stringUtils.wrapWithBold(commandFile.getSyntax()) + " ~ " + commandFile.getDescription());
             } catch (err) {
                 console.error(err);
             }
@@ -96,10 +96,16 @@ client.on('message', message => {
                         {
                             name: "Version: ",
                             value: stringUtils.wrapWithOBT(packagejson.version),
+                            inline: true
+                        },
+                        {
+                            name: "Prefix: ",
+                            value: config.prefix,
+                            inline: true
                         },
                         {
                             name: "CLI Args: ",
-                            value: stringUtils.wrapWithOBT(process_args.join(" ")),
+                            value: (process_args.lenght > 0) ? stringUtils.wrapWithOBT(process_args.join(" ")) : stringUtils.wrapWithOBT("none"),
                             inline: true
                         },
                         {
@@ -108,7 +114,7 @@ client.on('message', message => {
                             inline: true
                         },
                     ]
-                }
+                }   
             });
         else
             return message.channel.send({
