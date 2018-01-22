@@ -32,12 +32,20 @@ client.on('ready', () => {
         case '--status':
             switch (process_args[1]) {
                 case 'game':
-                    client.user.setGame(process_args[2]);
-                    console.log(success("Sucessfully ") + "set game status to " + neutral(process_args[2]));
+                    client.user.setActivity(process_args[2], { type: "PLAYING" })
+                    console.log(success("Sucessfully ") + "set playing status to " + neutral(process_args[2]));
+                    break;
+                case 'listen':
+                    client.user.setActivity(process_args[2], { type: "LISTENING" })
+                    console.log(success("Sucessfully ") + "set listening status to " + neutral(process_args[2]));
+                    break;
+                case 'watch':
+                    client.user.setActivity(process_args[2], { type: "WATCHING" })
+                    console.log(success("Sucessfully ") + "set watching status to " + neutral(process_args[2]));
                     break;
                 case 'stream':
-                    client.user.setGame(process_args[2], "https://www.twitch.tv/wyvern_bot"); // Streaming status trick... This twitch channel doesnt exist.
-                    console.log(success("Sucessfully ") + "set stream status to " + neutral(process_args[2]));
+                    client.user.setActivity(process_args[2], { url: "https://www.twitch.tv/wyvern_bot", type: "STREAMING" });
+                    console.log(success("Sucessfully ") + "set streaming status to " + neutral(process_args[2]));
                     break;
             }
             break;
@@ -114,7 +122,7 @@ client.on('message', message => {
                             inline: true
                         },
                     ]
-                }   
+                }
             });
         else
             return message.channel.send({
