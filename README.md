@@ -1,4 +1,8 @@
-# ![wyvern](./resources/wyvern-logo.png?raw=true) [![Discord](https://img.shields.io/badge/discord-wyvern-738bd7.svg?style=square)](https://discord.gg/yUV5wWY)
+<p align="center">
+  <img src="./resources/wyvern-logo.png"/>
+</p>
+
+[![GitHub license](https://img.shields.io/github/license/zxvnme/wyvern.svg)](https://github.com/zxvnme/wyvern/blob/master/LICENSE.md) ![https://david-dm.org/zxvnme/wyvern](https://david-dm.org/zxvnme/wyvern.svg)  [![Discord](https://discordapp.com/api/guilds/401502964117798933/widget.png?style=shield)](https://discord.gg/yUV5wWY)
 
 ## wyvern
 An useful League of Legends  helper.  
