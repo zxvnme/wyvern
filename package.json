@@ -2,8 +2,8 @@
   "name": "wyvern",
   "description": "wyvern",
   "author": "zxvnme",
-  "version": "1.0.2",
-  "private": true,
+  "version": "1.0.3",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^2.3.0",
     "discord.js": "^11.3.0",
