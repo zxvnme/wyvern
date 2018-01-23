@@ -2,14 +2,13 @@ const stringUtils = require('./stringutils.js');
 const packagejson = require('./../package.json');
 const RiotApi = require('lol-stats-api-module');
 const config = require('./../config.json');
-const request = require('request');
 const Discord = require('discord.js');
 const chalk = require('chalk');
 const fs = require('fs');
 const client = new Discord.Client();
 const api = new RiotApi({
-    key: config.apikey,
-    region: config.region
+    key: config.riot_api_key,
+    region: config.riot_api_region
 });
 
 function format(seconds) {
@@ -50,10 +49,23 @@ client.on('ready', () => {
             }
             break;
     }
+
     api.getVersionsStaticData({ region: "eune" }, (err, data) => {
+
+        let file_content = fs.readFileSync('./../config.json', 'utf-8');
+        let jsonObj = JSON.parse(file_content);
+        if (jsonObj.riot_api_version !== data[0]) { // Check if version defined in config.json is even with one in api callback.
+            jsonObj.riot_api_version = data[0]; // Write actual version.
+            fs.writeFile('./../config.json', JSON.stringify(jsonObj, null, 4), 'utf-8', (err) => { // Save it to the configuration file.
+                if(!err) console.log(success("Updated ") + "Riot Api version in " + neutral("configuration file."));
+                else console.log(error("Couldn't ") + "update " + neutral("configuration file") + " with latest Riot Api version.");
+                
+            });
+        }
         if (!err) console.log(success("Estabilished ") + "connection with Riot Api v-" + neutral(data[0]));
         else console.log(error("Couldn't ") + "connect to Riot Api. Error code: " + neutral(err.code));
     });
+
     fs.readdir('./commands/', (err, files) => {
         files.forEach((response) => {
             if (err) return console.error(err);
@@ -66,9 +78,9 @@ client.on('ready', () => {
 client.on('message', message => {
     if (message.author.bot) return;
 
-    if (!message.content.startsWith(config.prefix)) return;
+    if (!message.content.startsWith(config.discord_bot_prefix)) return;
 
-    let args = message.content.substring(config.prefix.length).split(" ");
+    let args = message.content.substring(config.discord_bot_prefix.length).split(" ");
     let command = args[0].toLowerCase();
 
     if (args[0] === "help") {
@@ -108,7 +120,7 @@ client.on('message', message => {
                         },
                         {
                             name: "Prefix: ",
-                            value: config.prefix,
+                            value: config.discord_bot_prefix,
                             inline: true
                         },
                         {
@@ -145,4 +157,4 @@ client.on('message', message => {
     }
 });
 
-client.login(config.token);
+client.login(config.discord_bot_token);

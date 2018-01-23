@@ -5,7 +5,7 @@ String.prototype.replaceAll = function (orig, repl) {
 }
 
 module.exports.launch = (client, api, config, message, args) => {
-    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.prefix + "rank <summonerName>"));
+    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.discord_bot_prefix + "rank <summonerName>"));
 
     args.shift();
     let rank_summoner = { name: args.join(" ") };
@@ -38,7 +38,7 @@ module.exports.launch = (client, api, config, message, args) => {
                     author: {
                         name: "🏆 Rank info:"
                     },
-                    description: "[" + data[rank_indexes[0]].playerOrTeamName + "](" + "http://" + config.region + ".op.gg/summoner/userName=" + (data[rank_indexes[0]].playerOrTeamName.indexOf(" ") ? data[rank_indexes[0]].playerOrTeamName.replaceAll(" ", "+") + ")" : data[rank_indexes[0]].playerOrTeamName + ")"),
+                    description: "[" + data[rank_indexes[0]].playerOrTeamName + "](" + "http://" + config.riot_api_region + ".op.gg/summoner/userName=" + (data[rank_indexes[0]].playerOrTeamName.indexOf(" ") ? data[rank_indexes[0]].playerOrTeamName.replaceAll(" ", "+") + ")" : data[rank_indexes[0]].playerOrTeamName + ")"),
                     fields: [
                         {
                             name: "Solo/Duo",

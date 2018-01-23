@@ -5,7 +5,7 @@ String.prototype.replaceAll = function (orig, repl) {
 }
 
 module.exports.launch = (client, api, config, message, args) => {
-    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.prefix + "summoner <summonerName>"));
+    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.discord_bot_prefix + "summoner <summonerName>"));
     args.shift();
     let summoner = { name: args.join(" ") };
 
@@ -18,9 +18,9 @@ module.exports.launch = (client, api, config, message, args) => {
                 author: {
                     name: "📋 Summoner info."
                 },
-                description: "Info about: [" + data.name + "](" + "http://" + config.region + ".op.gg/summoner/userName=" + (summoner.name.indexOf(" ") ? summoner.name.replaceAll(" ", "+") + ")" : summoner.name + ")"),
+                description: "Info about: [" + data.name + "](" + "http://" + config.riot_api_region + ".op.gg/summoner/userName=" + (summoner.name.indexOf(" ") ? summoner.name.replaceAll(" ", "+") + ")" : summoner.name + ")"),
                 thumbnail: {
-                    url: "http://ddragon.leagueoflegends.com/cdn/8.1.1/img/profileicon/" + data.profileIconId + ".png"
+                    url: "http://ddragon.leagueoflegends.com/cdn/" + config.riot_api_version + "/img/profileicon/" + data.profileIconId + ".png"
                 },
                 fields: [
                     {

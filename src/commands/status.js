@@ -1,7 +1,7 @@
 const stringUtils = require('./../stringutils');
 
 module.exports.launch = (client, api, config, message, args) => {
-    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.prefix + "status <region>"));
+    if (!args[1]) return message.channel.send("Invalid syntax! usage: " + stringUtils.wrapWithOBT(config.discord_bot_prefix + "status <region>"));
     let region = { region: args[1] };
     api.getStatus(region, (err, data) => {
         if (err) return message.channel.send(stringUtils.wrapWithCSH("markdown", "# An error has occurred :(\n" + err.code + " " + err.message));
@@ -38,7 +38,7 @@ module.exports.launch = (client, api, config, message, args) => {
                     }
                 ],
                 footer: {
-                    text: "For more info " + config.prefix + "fullstatus <region>"
+                    text: "For more info " + config.discord_bot_prefix + "fullstatus <region>"
                 }
             }
         });

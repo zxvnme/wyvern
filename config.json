@@ -1,6 +1,7 @@
 {
-    "token": "token",
-    "apikey": "apikey",
-    "region": "eune",
-    "prefix": "🐉"
+    "discord_bot_token": "discord_bot_token",
+    "discord_bot_prefix": "🐉",
+    "riot_api_key": "riot_api_key",
+    "riot_api_version": "8.2.1",
+    "riot_api_region": "eune"
 }

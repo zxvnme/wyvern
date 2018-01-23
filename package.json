@@ -2,12 +2,11 @@
   "name": "wyvern",
   "description": "wyvern",
   "author": "zxvnme",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.3.0",
     "discord.js": "^11.3.0",
-    "lol-stats-api-module": "^1.0.6",
-    "request": "^2.83.0"
+    "lol-stats-api-module": "^1.0.6"
   }
 }
